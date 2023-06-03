@@ -52,7 +52,7 @@ public class CustomerRestController {
 
 
         if (customer == null) {
-            throw new RuntimeException("Customer id not found - " + customerId);
+            throw new CustomerNotFoundException("Customer id not found - " + customerId);
         }
 
         customerService.deleteById(customerId);
