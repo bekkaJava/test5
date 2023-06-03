@@ -2,6 +2,7 @@ package com.test.customerservice.service;
 
 import com.test.customerservice.dao.CustomerRepository;
 import com.test.customerservice.entity.Customer;
+import com.test.customerservice.exception.CustomerNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,7 +35,7 @@ public class CustomerServiceImpl implements CustomerService {
         if (result.isPresent()) {
             customer = result.get();
         } else {
-            throw new RuntimeException("Did not find customer id - " + id);
+            throw new CustomerNotFoundException("Did not find customer id : " + id);
         }
 
         return customer;

@@ -1,6 +1,7 @@
 package com.test.customerservice.rest;
 
 import com.test.customerservice.entity.Customer;
+import com.test.customerservice.exception.CustomerNotFoundException;
 import com.test.customerservice.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -28,7 +29,7 @@ public class CustomerRestController {
         Customer customer = customerService.findById(customerID);
 
         if (customer == null) {
-            throw new RuntimeException("Customer id not found - " + customerID);
+            throw new CustomerNotFoundException("Did not find customer id : " + customerID);
         }
 
         return customer;
@@ -58,5 +59,6 @@ public class CustomerRestController {
 
         return "Deleted Customer id - " + customerId;
     }
+
 
 }
